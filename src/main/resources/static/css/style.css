@@ -1,0 +1,17 @@
+  
+.textoBrancoNav{
+      color:  gainsboro;
+      font-size: large;
+  }
+  
+  .corFundoNav{
+      background-color: #000;
+  }
+  
+  .corFundoCinzaEscuro{
+      background-color: #292829;
+  }
+  
+  .corFundoAzulClaro{
+      background-color: #eaedf5;
+  }

@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>PESSOAS</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link th:href="@{/css/style.css}" rel="stylesheet"/>
+        <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"> </link>
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="row corFundoCinzaEscuro"> <!-- NAVBAR NO TOPO DA PÁGINA -->
+                <ul class="nav nav-underline justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link active corbranca" aria-current="page" th:href="@{index}"><p class="textoBrancoNav">Página Principal</p></a>
+                    </li>                    
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{processo}"><p class="textoBrancoNav">Cadastrar Processo</p></a>
+                    </li>                       
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{pessoa}"><p class="textoBrancoNav">Pessoas</p></a>
+                    </li>                    
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{advogado}"><p class="textoBrancoNav">Advogados</p></a>
+                    </li>
+                </ul>
+            </div><!-- FIM NAVBAR NO TOPO DA PÁGINA -->
+            
+            <div class="row">
+                <h5>Consultar Dados de Pessoa</h5>
+                <form id="campoBuscaPessoa">
+                    <label for="buscaPessoa" class= "form-label">CPF:</label>                       
+                    <input type="text" maxlength="14" id="buscaPessoa" name="buscaPessoa" class="form-control"/>
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+            </div> <!--FIM DIV BUSCA --><br/>
+            
+            <div class="row corFundoAzulClaro" id="divCadastroPessoa">
+                <h5>Cadastrar Pessoa</h5>
+                <form id="formularioCadastrarPessoa">
+                    <label for="nomePessoa" class="form-label">Nome:</label>
+                    <input type="text" id="nomePessoa" name="nomePessoa" class="form-control"/>
+                    
+                    <label for="cpfPessoa" class="form-label">CPF:</label>
+                    <input type="text" maxlength="14" id="cpfPessoa" name="cpfPessoa" class="form-control" />
+                    
+                    <label for="enderecoPessoa" class="form-label">Endereço:</label>
+                    <input type="text" id="enderecoPessoa" name="enderecoPessoa" class="form-control"/>
+                    
+                    <label for="cidadePessoa" class="form-label">Cidade:</label>
+                    <input type="text" id="cidadePessoa" name="cidadePessoa" class="form-control"/>
+                    
+                    <label for="ufPessoa" class="form-label">UF:</label>
+                    <input type="text" id="ufPessoa" name="ufPessoa" class="form-control"/>
+                    
+                    <br/>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                    <button type="button" class="btn btn-secondary">Limpar</button>
+                </form>
+            </div><!-- FIM DIV ROW CADASTRO --><br/>
+            
+            <div class="row" id="divDetalharPessoa">
+                <h5>Dados da Pessoa</h5>
+                <p>Nome: <span id="nomePessoaDetalhes"></span></p>
+                <p>CPF: <span id="cpfPessoaDetalhes"></span></p>
+                <p>Endereço: <span id="enderecoPessoaDetalhes"></span></p>
+                <p>Cidade: <span id="cidadePessoaDetalhes"></span></p>
+                <p>UF: <span id="ufPessoaDetalhes"></span></p>
+                <br/>
+                <div class="d-grid gap-2 d-md-block">
+                    <button type="button" id="botaoEditarPessoa" class="btn btn-outline-info">Editar Dados</button>
+                </div>
+                <br/>
+            </div><!-- FIM DIV ROW DETALHES --><br/>
+            
+            <div class="row corFundoAzulClaro" id="divEditarPessoa">
+                <h5>Editar Cadastro de Pessoa</h5>
+                <form id="formularioEditarPessoa">
+                    <label for="nomePessoaEditar" class="form-label">Nome:</label>
+                    <input type="text" id="nomePessoaEditar" name="nomePessoaEditar" class="form-control"/>
+                    
+                    <label for="cpfPessoaEditar" class="form-label">CPF:</label>
+                    <input type="text" maxlength="14" id="cpfPessoaEditar" name="cpfPessoaEditar" class="form-control"/>
+                    
+                    <label for="enderecoPessoaEditar" class="form-label">Endereço:</label>
+                    <input type="text" id="enderecoPessoaEditar" name="enderecoPessoaEditar" class="form-control"/>
+                    
+                    <label for="cidadePessoaEditar" class="form-label">Cidade:</label>
+                    <input type="text" id="cidadePessoaEditar" name="cidadePessoaEditar" class="form-control"/>
+                    
+                    <label for="ufPessoaEditar" class="form-label">UF:</label>
+                    <input type="text" id="ufPessoaEditar" name="ufPessoaEditar" class="form-control"/>
+                    
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                </form>
+            </div><!-- FIM DIV ROW EDITAR --><br/>
+            
+                      
+            <div class="row">
+                <div class="d-grid gap-2 col-3 mx-auto">
+                    <button type="button" class="btn btn-warning">Página Inicial</button>
+                </div>
+            </div>
+              
+        </div> <!-- FIM DIV CONTAINER -->
+        <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+         <script th:src="@{/js/scriptsPessoa.js}"></script>
+    </body>
+</html>
