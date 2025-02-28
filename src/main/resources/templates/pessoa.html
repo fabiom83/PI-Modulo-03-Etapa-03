@@ -29,7 +29,7 @@
                 <h5>Consultar Dados de Pessoa</h5>
                 <form id="campoBuscaPessoa">
                     <label for="buscaPessoa" class= "form-label">CPF:</label>                       
-                    <input type="text" maxlength="14" id="buscaPessoa" name="buscaPessoa" class="form-control"/>
+                    <input type="text" maxlength="14" id="buscaPessoa" name="buscaPessoa" class="form-control" placeholder="Digite Apenas Números"/>
                     <br/>
                     <button type="submit" class="btn btn-primary">Buscar</button>
                 </form>
@@ -42,7 +42,7 @@
                     <input type="text" id="nomePessoa" name="nomePessoa" class="form-control"/>
                     
                     <label for="cpfPessoa" class="form-label">CPF:</label>
-                    <input type="text" maxlength="14" id="cpfPessoa" name="cpfPessoa" class="form-control" />
+                    <input type="text" maxlength="14" id="cpfPessoa" name="cpfPessoa" class="form-control" placeholder="Digite Apenas Números" />
                     
                     <label for="enderecoPessoa" class="form-label">Endereço:</label>
                     <input type="text" id="enderecoPessoa" name="enderecoPessoa" class="form-control"/>
@@ -55,12 +55,13 @@
                     
                     <br/>
                     <button type="submit" class="btn btn-success">Cadastrar</button>
-                    <button type="button" class="btn btn-secondary">Limpar</button>
+                    <button type="button" id="botaoLimparCadastro" class="btn btn-secondary">Limpar</button>
                 </form>
             </div><!-- FIM DIV ROW CADASTRO --><br/>
             
             <div class="row" id="divDetalharPessoa">
                 <h5>Dados da Pessoa</h5>
+                <p id="idPessoaDetalhes" style="display: none"></p>
                 <p>Nome: <span id="nomePessoaDetalhes"></span></p>
                 <p>CPF: <span id="cpfPessoaDetalhes"></span></p>
                 <p>Endereço: <span id="enderecoPessoaDetalhes"></span></p>
@@ -76,6 +77,7 @@
             <div class="row corFundoAzulClaro" id="divEditarPessoa">
                 <h5>Editar Cadastro de Pessoa</h5>
                 <form id="formularioEditarPessoa">
+                    <p id="idPessoaEditar" style="display: none"></p>
                     <label for="nomePessoaEditar" class="form-label">Nome:</label>
                     <input type="text" id="nomePessoaEditar" name="nomePessoaEditar" class="form-control"/>
                     
@@ -93,7 +95,7 @@
                     
                     <br/>
                     <button type="submit" class="btn btn-primary">Editar</button>
-                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    <button type="button" id="botaoCancelarEdicao" class="btn btn-danger">Cancelar</button>
                 </form>
             </div><!-- FIM DIV ROW EDITAR --><br/>
             
