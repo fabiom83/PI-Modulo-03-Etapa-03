@@ -18,10 +18,41 @@ $(document).ready(function(){
             alert("Preencha o Campo para Busca");
         }
         else{
-           $('#divDetalharProcesso').show(); //SIMULA FUNCIONAMENTO DO BOTAO
+          let retorno = consultaNumeroProcessoApi(busca);
+          console.log("Resposta da API: " + retorno);
         }
     });
     
+    //FUNÇÃO PARA CONSULTAR PROCESSO NA API
+    function consultaNumeroProcessoApi(numeroProcesso){
+        let resposta = 'Tudo Certo!';
+        $.ajax({
+            url:'http://localhost:8080/processo/pesquisarProcesso/' + numeroProcesso,
+            method: 'GET',
+            success: function(data){
+                
+                let processo = data;
+                
+                if(!processo.nrProcesso){
+                    alert("Processo Não Localizado!");
+                }
+                else{
+                    $('#processoDetalhes').text(processo.nrProcesso);
+                    $('#nomeAutorDetalhes').text(processo.autorIdFk);
+                    $('#advAutorDetalhes').text(processo.advAutorIdFk);
+                    $('#nomeReuDetalhes').text(processo.reuIdFk);
+                    $('#advReuDetalhes').text(processo.advReuIdFk);
+                    $('#varaTramitacaoDetalhes').text(processo.varaTramitacao);
+                    $('#ufTramitacaoDetalhes').text(processo.ufTramitacao);
+                    
+                    $('#divDetalharProcesso').show();
+                    
+                }
+            }
+        });
+        return resposta;
+    }
+     //===================================================================
     //VALIDAR CAMPOS  CADASTRAR
     $('#formularioBuscarAutor').submit(function(event){
         event.preventDefault();
