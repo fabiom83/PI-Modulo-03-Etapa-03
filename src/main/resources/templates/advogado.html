@@ -29,7 +29,7 @@
                 <h5>Consultar Dados do Advogado</h5>
                 <form id="campoBuscaAdvogado">
                     <label for="buscaAdvogado" class= "form-label">CPF:</label>                       
-                    <input type="text" maxlength="14" id="buscaAdvogado" name="buscaAdvogado" class="form-control"/>
+                    <input type="text" maxlength="14" id="buscaAdvogado" name="buscaAdvogado" class="form-control" placeholder="Digite Apenas Números"/>
                     <br/>
                     <button type="submit" class="btn btn-primary">Buscar</button>
                 </form>
@@ -42,7 +42,7 @@
                     <input type="text" id="nomeAdvogado" name="nomeAdvogado" class="form-control"/>
                     
                     <label for="cpfAdvogado" class="form-label">CPF:</label>
-                    <input type="text" maxlength="14" id="cpfAdvogado" name="cpfAdvogado" class="form-control"/>
+                    <input type="text" maxlength="14" id="cpfAdvogado" name="cpfAdvogado" class="form-control" placeholder="Digite Apenas Números"/>
                     
                     <label for="nrOab" class="form-label">OAB:</label>
                     <input type="text" id="nrOab" name="nrOab" class="form-control"/>
@@ -51,19 +51,20 @@
                     <input type="text" id="ufOab" name="ufOab" class="form-control"/>
                     <br/>
                     <button type="submit" class="btn btn-success">Cadastrar</button>
-                    <button type="button" class="btn btn-secondary">Limpar</button>
+                    <button type="button" id="botaoLimparCadastro" class="btn btn-secondary">Limpar</button>
                 </form>
             </div><!-- FIM DIV ROW CADASTRO --><br/>
             
             <div class="row" id="divDetalharAdvogado">
                 <h5>Dados do Advogado</h5>
+                <p id="idAdvogadoDetalhes" style="display: none"></p>
                 <p>Nome: <span id="nomeAdvogadoDetalhes"></span></p>
                 <p>CPF: <span id="cpfAdvogadoDetalhes"></span></p>
                 <p>OAB: <span id="nrOabDetalhes"></span></p>
                 <p>UF da OAB: <span id="ufOabDetalhes"></span></p>
                 <br/>
                 <div class="d-grid gap-2 d-md-block">
-                    <button type="button" class="btn btn-outline-info">Editar Dados</button>
+                    <button type="button" id="botaoEditarAdvogado" class="btn btn-outline-info">Editar Dados</button>
                 </div>
                 <br/>
             </div><!-- FIM DIV ROW DETALHES --><br/>
@@ -71,11 +72,12 @@
             <div class="row corFundoAzulClaro" id="divEditarAdvogado">
                 <h5>Editar Cadastro de Advogado</h5>
                 <form id="formularioEditarAdvogado">
+                    <p id="idAdvogadoEditar" style="display: none"></p>
                     <label for="nomeAdvogadoEditar" class="form-label">Nome:</label>
                     <input type="text" id="nomeAdvogadoEditar" name="nomeAdvogadoEditar" class="form-control"/>
                     
                     <label for="cpfAdvogadoEditar" class="form-label">CPF:</label>
-                    <input type="text" maxlength="14" id="cpfAdvogadoEditar" name="cpfAdvogadoEditar" class="form-control"/>
+                    <input type="text" maxlength="14" id="cpfAdvogadoEditar" name="cpfAdvogadoEditar" class="form-control" placeholder="Digite Apenas Números"/>
                     
                     <label for="nrOabEditar" class="form-label">OAB:</label>
                     <input type="text" id="nrOabEditar" name="nrOabEditar" class="form-control"/>
@@ -84,7 +86,7 @@
                     <input type="text" id="ufOabEditar" name="ufOabEditar" class="form-control"/>
                     <br/>
                     <button type="submit" class="btn btn-primary">Editar</button>
-                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    <button type="button" id="botaoCancelarEdicao" class="btn btn-danger">Cancelar</button>
                 </form>
             </div><!-- FIM DIV ROW EDITAR --><br/>
               

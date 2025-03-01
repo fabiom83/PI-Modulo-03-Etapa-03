@@ -7,36 +7,88 @@ $(document).ready(function(){
     //VALIDAR CAMPO BUSCA NO ADVOGADO.HTML
     $('#campoBuscaAdvogado').submit(function(event){
         event.preventDefault();
-        if($('#buscaAdvogado').val() === ''){
+        
+        let cpfBusca = $('#buscaAdvogado').val();
+        
+        if(cpfBusca === ''){
             alert("Preencha o Campo para Busca");
         }
         else{
-            ('#divDetalharAdvogado').show();
+            consultaAdvogadoCpfApi(cpfBusca);
         }
     });
     
+    //FUNÇÃO PARA CONSULTAR ADVOGADO NA API
+    function consultaAdvogadoCpfApi(cpf){
+        $.ajax({
+            url:'http://localhost:8080/advogado/pesquisarCpf/' + cpf,
+            method: 'GET',
+            success: function(data){
+                
+                let advogado = data;
+                
+                if(!advogado.nomeAdvogado){
+                    alert("CPF Não Localizado!");
+                }
+                else{
+                    $('#idAdvogadoDetalhes').text(advogado.idAdvogado);
+                    $('#nomeAdvogadoDetalhes').text(advogado.nomeAdvogado);
+                    $('#cpfAdvogadoDetalhes').text(advogado.cpfAdvogado);
+                    $('#nrOabDetalhes').text(advogado.nrOab);
+                    $('#ufOabDetalhes').text(advogado.ufOab);
+                    
+                    
+                    $('#divDetalharAdvogado').show();
+                    $('#divCadastroAdvogado').hide();
+                }
+            }
+        });
+    }
     
-    //VALIDAR FORMULÁRIO DE CADASTRO
+    //===================================================================
+    
+    
+    //VALIDAR FORMULÁRIO DE CADASTRO E CHAMAR API
     $('#formularioCadastrarAdvogado').submit(function(){
         event.preventDefault();
-        let nome = $('#nomeAdvogado').val();
-        let cpf = $('#cpfAdvogado').val();
-        let nrOab = $('#nrOab').val();
-        let ufOab = $('#ufOab').val();
+        
+        let novoAdvogado = new Object();
+        
+        novoAdvogado.nomeAdvogado = $('#nomeAdvogado').val();
+        novoAdvogado.cpfAdvogado = $('#cpfAdvogado').val();
+        novoAdvogado.nrOab = $('#nrOab').val();
+        novoAdvogado.ufOab = $('#ufOab').val();
                 
         let cpfRegex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
         
-        if((nome === '') || (cpf === '') || (nrOab === '') || (ufOab === '')){
+        if((novoAdvogado.nomeAdvogado === '') || (novoAdvogado.cpfAdvogado === '') || (novoAdvogado.nrOab === '') || (novoAdvogado.ufOab === '')){
             alert("Preencha Todos os Campos para Cadastro!");
         }
         
-        if(cpf.match(cpfRegex)){
-            console.log("CPF  OK");
+        if(novoAdvogado.cpfAdvogado.match(cpfRegex)){
+            cadastrarAdvogadoApi(novoAdvogado);
         }
         else{
             alert("Informe o CPF no formato XXX.XXX.XXX-XX");
         }
     });
+    
+    //FUNÇÃO APRA CADASTRAR ADVOGADO COM API
+    function cadastrarAdvogadoApi(novoAdvogado) { 
+        $.ajax({ 
+            url: 'http://localhost:8080/advogado/cadastrar', 
+            method: 'POST', 
+            contentType: 'application/json', 
+            data: JSON.stringify(novoAdvogado),
+            success: function(data){
+                alert('Advogado Cadastrado com Sucesso!');
+                limparCadastro();
+            },
+            error: function(){
+                alert('Erro ao Cadastrar Advogado!')
+            }
+        });
+    }
     
     //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX
     $('#cpfAdvogado').keypress(function (event){
@@ -52,27 +104,76 @@ $(document).ready(function(){
         }
     });
     
-    //VALIDAR FORMULÁRIO EDITAR PESSOA
+    $('#botaoLimparCadastro').click(function(){
+        limparCadastro();
+    });
+    
+    function limparCadastro(){
+        $('#nomeAdvogado').val('');
+        $('#cpfAdvogado').val('');
+        $('#nrOab').val('');
+        $('#ufOab').val('');
+    }
+    
+    //=====================================================================================
+    
+    //TRANSFERE DADOS DA CONSULTA PARA FORMULÁRIO DE EDIÇÃO    
+    $('#botaoEditarAdvogado').click(function(){
+        $('#idAdvogadoEditar').text($('#idAdvogadoDetalhes').text());
+        $('#nomeAdvogadoEditar').val($('#nomeAdvogadoDetalhes').text());
+        $('#cpfAdvogadoEditar').val($('#cpfAdvogadoDetalhes').text());
+        $('#nrOabEditar').val($('#nrOabDetalhes').text());
+        $('#ufOabEditar').val($('#ufOabDetalhes').text());
+                
+        $('#divEditarAdvogado').show();
+    });
+    
+    //VALIDAR FORMULÁRIO EDITAR ADVOGADO E CHAMAR API
     $('#formularioEditarAdvogado').submit(function(){
         event.preventDefault();
-        let nome = $('#nomeAdvogadoEditar').val();
-        let cpf = $('#cpfAdvogadoEditar').val();
-        let nrOab = $('#nrOabEditar').val();
-        let ufOab = $('#ufOabEditar').val();
+        
+        let id = parseInt($('#idAdvogadoEditar').text());
+        let advogadoEditar = new Object();
+        
+        advogadoEditar.idAdvogado = id;
+        advogadoEditar.nomeAdvogado = $('#nomeAdvogadoEditar').val();
+        advogadoEditar.cpfAdvogado = $('#cpfAdvogadoEditar').val();
+        advogadoEditar.nrOab = $('#nrOabEditar').val();
+        advogadoEditar.ufOab = $('#ufOabEditar').val();
         
         let cpfRegex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
         
-        if((nome === '') || (cpf === '') || (nrOab === '') || (ufOab === '')){
+        if((advogadoEditar.nomeAdvogado === '') || (advogadoEditar.cpfAdvogado === '') ||
+                (advogadoEditar.nrOab === '') || (advogadoEditar.ufOab === '')){
+            
             alert("Preencha Todos os Campos para Editar!");
         }
         
-        if(cpf.match(cpfRegex)){
-            console.log("CPF  OK");
+        if(advogadoEditar.cpfAdvogado.match(cpfRegex)){
+            editarAdvogadoApi(advogadoEditar);
         }
         else{
             alert("Informe o CPF no formato XXX.XXX.XXX-XX");
         }
     });
+    
+    function editarAdvogadoApi(advogadoEditar){
+        $.ajax({
+            url: 'http://localhost:8080/advogado/atualizar/' + advogadoEditar.idAdvogado, 
+            method: 'PUT', 
+            contentType: 'application/json', 
+            data: JSON.stringify(advogadoEditar),
+            success: function(data){
+                if(confirm('Dados Atualizados com Sucesso!')){
+                    limparEdicao();
+                    window.location.reload(true);  
+                }
+            },
+            error: function(){
+                alert('Erro ao Atualizar Dados!')
+            }
+        });
+    }
     
     //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX
     $('#cpfAdvogadoEditar').keypress(function (event){
@@ -88,8 +189,19 @@ $(document).ready(function(){
         }
     });
     
-    $('#botaoEditarAdvogado').click(function(){
-        $('#divEditarAdvogado').show();
-    });
+    //LIMPA FORMULÁRIO DE EDIÇÃO
+    function limparEdicao(){
+        $('#idAdvogadoEditar').text('');
+        $('#nomeAdvogadoEditar').val('');
+        $('#cpfAdvogadoEditar').val('');
+        $('#nrOabEditar').val('');
+        $('#ufOabEditar').val('');
+                
+        $('#divEditarAdvogado').hide();       
+    }
+    
+    $('#botaoCancelarEdicao').click(function(){
+        limparEdicao(); 
+    }); 
     
 });//FIM DO DOCUMENT READY FUNCTION
