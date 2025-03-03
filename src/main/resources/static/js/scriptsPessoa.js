@@ -40,6 +40,7 @@ $(document).ready(function(){
                     
                     $('#divDetalharPessoa').show();
                     $('#divCadastroPessoa').hide();
+                   
                 }
             }
         });

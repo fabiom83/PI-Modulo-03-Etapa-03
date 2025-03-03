@@ -8,9 +8,14 @@ $(document).ready(function(){
     $('#divCadastrarReu').hide();
     $('#divCadastrarDadosProcesso').hide();
     
-    
+    let processoConsultado;
+    let autorConsultado;
+    let reuConsultado;
+    let advAutorConsultado;
+    let advReuConsultado;
+       
     //VALIDAR CAMPO BUSCA NO INDEX.HTML
-    $('#campoBuscaProcesso').submit(function(event){
+    $('#campoBuscaProcesso').submit(async function(event){
         event.preventDefault();
         let busca = $('#buscaProcesso').val();
         
@@ -18,42 +23,77 @@ $(document).ready(function(){
             alert("Preencha o Campo para Busca");
         }
         else{
-          let retorno = consultaNumeroProcessoApi(busca);
-          console.log("Resposta da API: " + retorno);
+            processoConsultado = await consultaNumeroProcessoApi(busca);
+            autorConsultado = await consultaPessoaId(processoConsultado.autorIdFk);
+            reuConsultado = await consultaPessoaId(processoConsultado.reuIdFk);
+            advAutorConsultado = await consultaAdvogadoId(processoConsultado.advAutorIdFk);
+            advReuConsultado = await consultaAdvogadoId(processoConsultado.advReuIdFk);
+            $('#processoDetalhes').text(processoConsultado.nrProcesso);
+            $('#nomeAutorDetalhes').text(autorConsultado.nomePessoa);
+            $('#advAutorDetalhes').text(advAutorConsultado.nomeAdvogado);
+            $('#nomeReuDetalhes').text(reuConsultado.nomePessoa);
+            $('#advReuDetalhes').text(advReuConsultado.nomeAdvogado);
+            $('#varaTramitacaoDetalhes').text(processoConsultado.varaTramitacao);
+            $('#ufTramitacaoDetalhes').text(processoConsultado.ufTramitacao);
+           
+            $('#divDetalharProcesso').show();
         }
     });
     
-    //FUNÇÃO PARA CONSULTAR PROCESSO NA API
-    function consultaNumeroProcessoApi(numeroProcesso){
-        let resposta = 'Tudo Certo!';
-        $.ajax({
+    //FUNÇÃO PARA CONSULTAR PROCESSO NA API COM RETORNO 
+    async function consultaNumeroProcessoApi(numeroProcesso){
+        let processo;
+        await $.ajax({
             url:'http://localhost:8080/processo/pesquisarProcesso/' + numeroProcesso,
             method: 'GET',
             success: function(data){
-                
-                let processo = data;
-                
+                processo = data;
                 if(!processo.nrProcesso){
                     alert("Processo Não Localizado!");
                 }
-                else{
-                    $('#processoDetalhes').text(processo.nrProcesso);
-                    $('#nomeAutorDetalhes').text(processo.autorIdFk);
-                    $('#advAutorDetalhes').text(processo.advAutorIdFk);
-                    $('#nomeReuDetalhes').text(processo.reuIdFk);
-                    $('#advReuDetalhes').text(processo.advReuIdFk);
-                    $('#varaTramitacaoDetalhes').text(processo.varaTramitacao);
-                    $('#ufTramitacaoDetalhes').text(processo.ufTramitacao);
-                    
-                    $('#divDetalharProcesso').show();
-                    
+            }
+        });
+        return processo;
+    }
+    
+    //FUNÇÃO PARA CONSULTAR PESSOA NA API COM RETORNO
+    async function consultaPessoaId(id){
+        let pessoa;
+        await $.ajax({
+            url:'http://localhost:8080/pessoa/pesquisar/' + id,
+            method: 'GET',
+            success: function(data){
+                
+                pessoa = data;
+                if(!pessoa.nomePessoa){
+                
                 }
             }
         });
-        return resposta;
+        return pessoa;
+    }
+    
+    
+     //FUNÇÃO PARA CONSULTAR ADVOGADO NA API COM RETORNO
+    async function consultaAdvogadoId(id){
+        let advogado;
+        await $.ajax({
+            url:'http://localhost:8080/advogado/pesquisar/' + id,
+            method: 'GET',
+            success: function(data){
+            
+                advogado = data;
+                if(!advogado.nomeAdvogado){
+                
+                }
+            }
+        });
+        return advogado;
     }
      //===================================================================
-    //VALIDAR CAMPOS  CADASTRAR
+     
+     
+     //VALIDAR CAMPOS  CADASTRAR
     $('#formularioBuscarAutor').submit(function(event){
         event.preventDefault();
         if($('#cpfAutorBuscar').val() === ''){
@@ -93,6 +133,8 @@ $(document).ready(function(){
         }
     });
     
+    //================================================================================
+    
     //VALIDAR CAMPOS  EDITAR
     $('#formularioBuscarAutorEditar').submit(function(event){
         event.preventDefault();
@@ -100,6 +142,7 @@ $(document).ready(function(){
         if($('#cpfAutorBuscarEditar').val() === ''){
             alert("Preencha o Campo para Busca");
         }
+        
     });
     
     $('#formularioBuscarAdvAutorEditar').submit(function(event){
@@ -158,5 +201,12 @@ $(document).ready(function(){
         $('#divCadastrarDadosProcesso').show();
     });
     
+    
+    //===========================================================================
+    
+    
+    
+    
+       
     
 });//FIM DO DOCUMENT READY FUNCTION
