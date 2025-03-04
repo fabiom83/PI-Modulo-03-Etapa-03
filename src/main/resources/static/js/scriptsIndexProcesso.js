@@ -11,7 +11,14 @@ $(document).ready(function(){
     $('#divCadastrarReu').hide();
     $('#divCadastrarDadosProcesso').hide();
     
-    //VARIÁVEIS GLOBAIS PARA CONSULTAS E EDIÇÕES
+    //VARIÁVEIS GLOBAIS PARA CADASTRO, CONSULTAS E EDIÇÕES
+    
+    let autorNovo;
+    let reuNovo;
+    let advAutorNovo;
+    let advReuNovo;
+    let processoNovo = new Object();
+    
     let processoConsultado;
     let autorConsultado;
     let reuConsultado;
@@ -78,31 +85,47 @@ $(document).ready(function(){
     =============================================================================*/
     
     //VALIDAR CAMPOS  CADASTRAR
-    $('#formularioBuscarAutor').submit(function(event){
+    $('#formularioBuscarAutor').submit(async function(event){
         event.preventDefault();
         if($('#cpfAutorBuscar').val() === ''){
             alert("Preencha o Campo para Busca");
         }
+        else{
+            autorNovo = await consultaPessoaCpfApi($('#cpfAutorBuscar').val());
+            $('#spanNomeAutor').text(autorNovo.nomePessoa);
+        }
     });
     
-    $('#formularioBuscarAdvAutor').submit(function(event){
+    $('#formularioBuscarAdvAutor').submit(async function(event){
         event.preventDefault();
         if($('#cpfAdvAutorBuscar').val() === ''){
             alert("Preencha o Campo para Busca");
         }
+        else{
+            advAutorNovo = await consultaAdvogadoCpfApi($('#cpfAdvAutorBuscar').val());
+            $('#spanNomeAdvAutor').text(advAutorNovo.nomeAdvogado);
+        }
     });
     
-     $('#formularioBuscarReu').submit(function(event){
+     $('#formularioBuscarReu').submit(async function(event){
         event.preventDefault();
         if($('#cpfReuBuscar').val() === ''){
             alert("Preencha o Campo para Busca");
         }
+        else{
+            reuNovo = await consultaPessoaCpfApi($('#cpfReuBuscar').val());
+            $('#spanNomeReu').text(reuNovo.nomePessoa);
+        }
     });
     
-    $('#formularioBuscarAdvReu').submit(function(event){
+    $('#formularioBuscarAdvReu').submit(async function(event){
         event.preventDefault();
         if($('#cpfAdvReuBuscar').val() === ''){
             alert("Preencha o Campo para Busca");
+        }
+        else{
+            advReuNovo = await consultaAdvogadoCpfApi($('#cpfAdvReuBuscar').val());
+            $('#spanNomeAdvReu').text(advReuNovo.nomeAdvogado);
         }
     });
     
@@ -112,10 +135,66 @@ $(document).ready(function(){
         let tramitacao = $('#varaTramitacao').val();
         let ufTramitacao = $('#UfVaraTramitacao').val();
                
-        if((processo === '') || (tramitacao === '') || (ufTramitacao === '')){
-            alert("Preencha Todos os Campos para Edição");
+        if((processo === '') || (tramitacao === '') || (ufTramitacao === '') || (!autorNovo) || (!reuNovo)
+                || (!advAutorNovo) || (!advReuNovo)){
+            alert("Preencha Todos os Campos para Cadastrar");
         }
+        else{
+            processoNovo.nrProcesso = processo;
+            processoNovo.varaTramitacao = tramitacao;
+            processoNovo.ufTramitacao = ufTramitacao;
+            processoNovo.autorIdFk = parseInt(autorNovo.idPessoa);
+            processoNovo.reuIdFk = parseInt(reuNovo.idPessoa);
+            processoNovo.advAutorIdFk = parseInt(advAutorNovo.idAdvogado);
+            processoNovo.advReuIdFk = parseInt(advReuNovo.idAdvogado);
+            
+            cadastrarProcessoApi(processoNovo);
+            
+        }
+        
     });
+    
+    //FUNÇÃO APRA CADASTRAR PROCESSO COM API
+    function cadastrarProcessoApi(processoNovo) { 
+        $.ajax({ 
+            url: 'http://localhost:8080/processo/cadastrar', 
+            method: 'POST', 
+            contentType: 'application/json', 
+            data: JSON.stringify(processoNovo),
+            success: function(data){
+                alert('Processo Cadastrado com Sucesso!');
+                limparCadastro();
+            },
+            error: function(){
+                alert('Erro ao Cadastrar Processo!')
+            }
+        });
+    }
+    
+    $('#botaoLimparCadastro').click(function(){
+       limparCadastro(); 
+    });
+    
+    function limparCadastro(){
+        $('#nrProcesso').val('');
+        $('#varaTramitacao').val('');
+        $('#UfVaraTramitacao').val('');
+        $('#cpfAutorBuscar').val('');
+        $('#cpfReuBuscar').val('');
+        $('#cpfAdvAutorBuscar').val('');
+        $('#cpfAdvReuBuscar').val('');
+        $('##spanNomeAutor').val('');
+        $('##spanNomeReu').val('');
+        $('##spanNomeAdvAutor').val('');
+        $('##spanNomeAdvReu').val('');
+        
+        let reset;
+        
+        autorNovo = reset;
+        reuNovo = reset;
+        advAutorNovo = reset;
+        advReuNovo = reset;
+    }
     
    /*============================================================================
     *                             EDITAR PROCESSOS

@@ -35,6 +35,8 @@
                         <button type="submit" class="btn btn-primary">Buscar</button>
                     </form>
                     <br/>
+                    <p>Autor: <span id="spanNomeAutor"></span></p>
+                    <br/>
                     <div class="corFundoAzulClaro">
                     <form id="formularioBuscarAdvAutor">
                         <label for="cpfAdvAutorBuscar" class="form-label">Informe o CPF do Advogado:</label>
@@ -42,7 +44,9 @@
                         <button type="submit" class="btn btn-primary">Buscar</button>
                     </form>
                     <br/>
-                    <button type="button" id="botaoProsseguir1" class="btn btn-light">Prosseguir</button>
+                    <p>Advogado: <span id="spanNomeAdvAutor"></span></p>
+                    <br/>
+                    <button type="button" id="botaoProsseguir1" class="btn btn-warning">Prosseguir</button>
                     <br/>
                     </div>
                 </div><!-- FIM DIV AUTOR --><br/>
@@ -55,6 +59,8 @@
                         <button type="submit" class="btn btn-primary">Buscar</button>
                     </form>
                     <br/>
+                    <p>Réu: <span id="spanNomeReu"></span></p>
+                    <br/>
                     <div class="corFundoAzulClaro">
                     <form id="formularioBuscarAdvReu">
                         <label for="cpfAdvReuBuscar" class="form-label">Informe o CPF do Advogado:</label>
@@ -62,7 +68,9 @@
                         <button type="submit" class="btn btn-primary">Buscar</button>
                     </form>
                     <br/>
-                    <button type="button" id="botaoProsseguir2" class="btn btn-light">Prosseguir</button>
+                    <p>Advogado: <span id="spanNomeAdvReu"></span></p>
+                    <br/>
+                    <button type="button" id="botaoProsseguir2" class="btn btn-warning">Prosseguir</button>
                     <br/>
                     </div>
                 </div><!-- FIM DIV RÉU --><br/>
@@ -80,16 +88,13 @@
                         <input type="text" id="UfVaraTramitacao" name="UfVaraTramitacao" class="form-control"/>
                         <br/>
                         <button type="submit" class="btn btn-success">Cadastrar</button>
+                        <button type="button" id="botaoLimparCadastro" class="btn btn-danger">Limpar Formulários</button>
+                        
                     </form>
                     <br/>
                 </div><!-- FIM DIV DADOS PROCESSO -->               
             </div><!-- FIM DIV ROW CADASTRO --><br/>
-            <div class="row">
-                <div class="d-grid gap-2 col-3 mx-auto">
-                    <button type="button" class="btn btn-warning">Página Inicial</button>
-                </div>
-            </div>
-              
+                  
         </div> <!-- FIM DIV CONTAINER -->
         <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
