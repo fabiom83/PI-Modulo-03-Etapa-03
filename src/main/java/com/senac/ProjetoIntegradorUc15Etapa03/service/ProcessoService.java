@@ -34,17 +34,15 @@ public class ProcessoService {
         
         ProcessoEntity processo = getProcessoId(processoId);
         
-        /* =========== TODO ================================
+        processo.setNrProcesso(processoRequest.getNrProcesso());
+        processo.setVaraTramitacao(processoRequest.getVaraTramitacao());
+        processo.setUfTramitacao(processoRequest.getUfTramitacao());
+        processo.setAutorIdFk(processoRequest.getAutorIdFk());
+        processo.setReuIdFk(processoRequest.getReuIdFk());
+        processo.setAdvAutorIdFk(processoRequest.getAdvAutorIdFk());
+        processo.setAdvReuIdFk(processoRequest.getAdvReuIdFk());
         
-        pessoa.setNomePessoa(pessoaRequest.getNomePessoa());
-        pessoa.setCpfPessoa(pessoaRequest.getCpfPessoa());
-        pessoa.setCidade(pessoaRequest.getCidade());
-        pessoa.setEndereco(pessoaRequest.getEndereco());
-        pessoa.setUf(pessoaRequest.getUf());
-        
-        pessoaRepository.save(pessoa);
-
-        ====================================================== */
+        processoRepository.save(processo);
         
         return processo;
     
