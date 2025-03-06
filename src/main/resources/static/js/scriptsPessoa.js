@@ -46,6 +46,20 @@ $(document).ready(function(){
         });
     }
     
+       //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX
+    $('#buscaPessoa').keypress(function (event){
+        let inputlenght = $('#buscaPessoa').val().length;
+        
+        if((inputlenght === 3) || (inputlenght === 7)){
+            let ponto = $('#buscaPessoa').val();
+            $('#buscaPessoa').val(ponto + '.');
+        }
+        else if(inputlenght === 11){
+            let traco = $('#buscaPessoa').val();
+            $('#buscaPessoa').val(traco + '-');
+        }
+    });
+    
     //===================================================================
          
     

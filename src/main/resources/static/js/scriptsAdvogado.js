@@ -45,6 +45,20 @@ $(document).ready(function(){
         });
     }
     
+          //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX
+    $('#buscaAdvogado').keypress(function (event){
+        let inputlenght = $('#buscaAdvogado').val().length;
+        
+        if((inputlenght === 3) || (inputlenght === 7)){
+            let ponto = $('#buscaAdvogado').val();
+            $('#buscaAdvogado').val(ponto + '.');
+        }
+        else if(inputlenght === 11){
+            let traco = $('#buscaAdvogado').val();
+            $('#buscaAdvogado').val(traco + '-');
+        }
+    });
+    
     //===================================================================
     
     

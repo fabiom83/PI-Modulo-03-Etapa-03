@@ -15,3 +15,15 @@
   .corFundoAzulClaro{
       background-color: #eaedf5;
   }
+  
+  .bordaDiv{
+      border: 1px solid black;
+  }
+  
+  .marcaTextoAmarelo{
+      background-color: gold;
+  }
+  
+  .marcaTextoVerde{
+      background-color: mediumspringgreen;
+  }

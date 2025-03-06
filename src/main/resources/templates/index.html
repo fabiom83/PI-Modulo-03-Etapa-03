@@ -56,7 +56,7 @@
                         </form>
                     </div> <!--FIM DIV ROW BUSCA PROCESSO --><br/>
                     
-                    <div class="row corFundoAzulClaro" id="divDetalharProcesso"> <!-- ROW PARA DETALHES DE PROCESSO -->
+                    <div class="row corFundoAzulClaro bordaDiv" id="divDetalharProcesso"> <!-- ROW PARA DETALHES DE PROCESSO -->
                         <h5>Dados do Processo</h5>
                         <br/>
                         <p>Nº do Processo: <span id="processoDetalhes"></span></p>
@@ -77,28 +77,28 @@
                     <!-- DIV ROW EDITAR -->
                     <div class="row" id="divEditarProcessoTodos">
                         <br/>
-                        <div id="divEditarAutor"> <!-- SESSÃO AUTOR -->
+                        <div id="divEditarAutor" class="bordaDiv"> <!-- SESSÃO AUTOR -->
                             <h6>Editar Autor</h6>
                             <br/>
-                            <p>Autor Atual: <span id="spanAutorAtual"></span></p>
+                            <p>Autor Atual: <span id="spanAutorAtual" class="marcaTextoAmarelo"></span></p>
                             <form id="formularioBuscarAutorEditar">
                                 <label for="cpfAutorBuscarEditar" class="form-label">Informe o CPF do Autor:</label>
-                                <input type="text" maxlength="14" id="cpfAutorBuscarEditar" name="cpfAutorBuscarEditar" class="form-control"/>
+                                <input type="text" maxlength="14" id="cpfAutorBuscarEditar" name="cpfAutorBuscarEditar" class="form-control" placeholder="Digite Apenas Números"/>
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                                 <br/>
-                                <p>Novo Autor: <span id="spanNovoAutor"></span></p>
+                                <p>Novo Autor: <span id="spanNovoAutor" class="marcaTextoVerde"></span></p>
                             </form>
                             <br/>
                             
                             <div class="corFundoAzulClaro">
                             <br/>
-                            <p>Advogado Autor Atual: <span id="spanAdvAutorAtual"></span></p>
+                            <p>Advogado Autor Atual: <span id="spanAdvAutorAtual" class="marcaTextoAmarelo"></span></p>
                             <form id="formularioBuscarAdvAutorEditar">
                                 <label for="cpfAdvAutorBuscarEditar" class="form-label">Informe o CPF do Advogado:</label>
-                                <input type="text" maxlength="14" id="cpfAdvAutorBuscarEditar" name="cpfAdvAutorBuscarEditar" class="form-control"/>
+                                <input type="text" maxlength="14" id="cpfAdvAutorBuscarEditar" name="cpfAdvAutorBuscarEditar" class="form-control" placeholder="Digite Apenas Números"/>
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                                 <br/>
-                                <p>Novo Advogado Autor: <span id="spanNovoAdvAutor"></span></p>
+                                <p>Novo Advogado Autor: <span id="spanNovoAdvAutor" class="marcaTextoVerde"></span></p>
                             </form>
                             </div>
                             <br/>
@@ -107,27 +107,27 @@
                             <button type="button" id="botaoCancelarEdicaoAutor" class="btn btn-outline-danger">Cancelar</button>
                         </div><!-- FIM DIV AUTOR --><br/>
                         
-                        <div id="divEditarReu"><!-- SESSÃO RÉU -->
+                        <div id="divEditarReu" class="bordaDiv"><!-- SESSÃO RÉU -->
                             <h6>Editar Réu</h6>
                             <br/>
-                            <p>Réu Atual: <span id="spanReuAtual"></span></p>
+                            <p>Réu Atual: <span id="spanReuAtual" class="marcaTextoAmarelo"></span></p>
                             <form id="formularioBuscarReuEditar">
                                 <label for="cpfReuBuscarEditar" class="form-label">Informe o CPF do Réu:</label>
-                                <input type="text" maxlength="14" id="cpfReuBuscarEditar" name="cpfReuBuscarEditar" class="form-control"/>
+                                <input type="text" maxlength="14" id="cpfReuBuscarEditar" name="cpfReuBuscarEditar" class="form-control" placeholder="Digite Apenas Números"/>
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                                 <br/>
-                                <p>Novo Réu:  <span id="spanNovoReu"></span></p>
+                                <p>Novo Réu:  <span id="spanNovoReu" class="marcaTextoVerde"></span></p>
                             </form>
                             <br/>
                             <div class="corFundoAzulClaro">
                             <br/>
-                            <p>Advogado Réu Atual: <span id="spanAdvReuAtual"></span></p>
+                            <p>Advogado Réu Atual: <span id="spanAdvReuAtual" class="marcaTextoAmarelo"></span></p>
                             <form id="formularioBuscarAdvReuEditar">
                                 <label for="cpfAdvReuBuscarEditar" class="form-label">Informe o CPF do Advogado:</label>
-                                <input type="text" maxlength="14" id="cpfAdvReuBuscarEditar" name="cpfAdvReuBuscarEditar" class="form-control"/>
+                                <input type="text" maxlength="14" id="cpfAdvReuBuscarEditar" name="cpfAdvReuBuscarEditar" class="form-control" placeholder="Digite Apenas Números"/>
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                                 <br/>
-                                <p>Novo Advogado Réu: <span id="spanNovoAdvReu"></span></p>
+                                <p>Novo Advogado Réu: <span id="spanNovoAdvReu" class="marcaTextoVerde"></span></p>
                             </form>
                             <br/>
                             <br/>
@@ -137,7 +137,7 @@
                             </div>
                         </div><!-- FIM DIV RÉU --><br/>
                         
-                        <div id="divEditarDadosProcesso"> <!-- SESSÃO PROCESSO -->
+                        <div id="divEditarDadosProcesso" class="bordaDiv"> <!-- SESSÃO PROCESSO -->
                             <h6>Editar Dados do Processo</h6>
                             <form id="formularioProcessoEditar">
                                 <label for="nrProcessoEditar" class="form-label">Nº do Processo:</label>
@@ -150,9 +150,10 @@
                                 <input type="text" id="UfVaraTramitacaoEditar" name="UfVaraTramitacaoEditar" class="form-control"/>
                                 <br/>
                                 <button type="submit" class="btn btn-success">Editar Dados</button>
+                                <button type="button" id="botaoCancelarEdicaoDados" class="btn btn-outline-danger">Cancelar</button>
                             </form>
                             <br/>
-                            <button type="button" id="botaoCancelarEdicaoDados" class="btn btn-outline-danger">Cancelar</button>
+                           
                         </div><!-- FIM DIV DADOS PROCESSO -->
                     </div><!-- FIM DIV ROW EDITAR --><br/>                   
                 </div> <!-- FIM DIV COL-9 COM FORM BUSCA, DETALHES PROCESSO E EDITAR PROCESSO -->                

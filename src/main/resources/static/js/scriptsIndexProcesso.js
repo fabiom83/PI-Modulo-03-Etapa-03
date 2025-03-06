@@ -183,10 +183,10 @@ $(document).ready(function(){
         $('#cpfReuBuscar').val('');
         $('#cpfAdvAutorBuscar').val('');
         $('#cpfAdvReuBuscar').val('');
-        $('##spanNomeAutor').val('');
-        $('##spanNomeReu').val('');
-        $('##spanNomeAdvAutor').val('');
-        $('##spanNomeAdvReu').val('');
+        $('#spanNomeAutor').text('');
+        $('#spanNomeReu').text('');
+        $('#spanNomeAdvAutor').text('');
+        $('#spanNomeAdvReu').text('');
         
         let reset;
         
@@ -194,6 +194,9 @@ $(document).ready(function(){
         reuNovo = reset;
         advAutorNovo = reset;
         advReuNovo = reset;
+        
+        $('#divCadastrarReu').hide();
+        $('#divCadastrarDadosProcesso').hide();
     }
     
    /*============================================================================
@@ -230,6 +233,8 @@ $(document).ready(function(){
     $('#botaoCancelarEdicaoAutor').click(function(){
         $('#cpfAutorBuscarEditar').val('');
         $('#cpfAdvAutorBuscarEditar').val('');
+        $('#spanNovoAutor').text('');
+        $('#spanNovoAdvAutor').text('');
         $('#divEditarProcessoTodos').hide();
     });
     
@@ -292,6 +297,8 @@ $(document).ready(function(){
     $('#botaoCancelarEdicaoReu').click(function(){
         $('#cpfReuBuscarEditar').val('');
         $('#cpfAdvReuBuscarEditar').val('');
+        $('#spanNovoReu').text('');
+        $('#spanNovoAdvReu').text('');
         $('#divEditarProcessoTodos').hide();
         
     });
@@ -468,8 +475,123 @@ $(document).ready(function(){
         return advogado;
     }
     
+    /*=================================================================================================
+    ********** FUNÇÕES PARA MELHORIAS DE CPF **********
+    =================================================================================================*/
     
+    //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX -- CAMPOS EDIÇÃO
+    $('#cpfAutorBuscarEditar').keypress(function (event){
+        let inputlenght = $('#cpfAutorBuscarEditar').val().length;
+        
+        if((inputlenght === 3) || (inputlenght === 7)){
+            let ponto = $('#cpfAutorBuscarEditar').val();
+            $('#cpfAutorBuscarEditar').val(ponto + '.');
+        }
+        else if(inputlenght === 11){
+            let traco = $('#cpfAutorBuscarEditar').val();
+            $('#cpfAutorBuscarEditar').val(traco + '-');
+        }
+    });
     
+    //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX
+    $('#cpfAdvAutorBuscarEditar').keypress(function (event){
+        let inputlenght = $('#cpfAdvAutorBuscarEditar').val().length;
+        
+        if((inputlenght === 3) || (inputlenght === 7)){
+            let ponto = $('#cpfAdvAutorBuscarEditar').val();
+            $('#cpfAdvAutorBuscarEditar').val(ponto + '.');
+        }
+        else if(inputlenght === 11){
+            let traco = $('#cpfAdvAutorBuscarEditar').val();
+            $('#cpfAdvAutorBuscarEditar').val(traco + '-');
+        }
+    });
+    
+     //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX
+    $('#cpfReuBuscarEditar').keypress(function (event){
+        let inputlenght = $('#cpfReuBuscarEditar').val().length;
+        
+        if((inputlenght === 3) || (inputlenght === 7)){
+            let ponto = $('#cpfReuBuscarEditar').val();
+            $('#cpfReuBuscarEditar').val(ponto + '.');
+        }
+        else if(inputlenght === 11){
+            let traco = $('#cpfReuBuscarEditar').val();
+            $('#cpfReuBuscarEditar').val(traco + '-');
+        }
+    });
+    
+    //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX
+    $('#cpfAdvReuBuscarEditar').keypress(function (event){
+        let inputlenght = $('#cpfAdvReuBuscarEditar').val().length;
+        
+        if((inputlenght === 3) || (inputlenght === 7)){
+            let ponto = $('#cpfAdvReuBuscarEditar').val();
+            $('#cpfAdvReuBuscarEditar').val(ponto + '.');
+        }
+        else if(inputlenght === 11){
+            let traco = $('#cpfAdvReuBuscarEditar').val();
+            $('#cpfAdvReuBuscarEditar').val(traco + '-');
+        }
+    });
+    
+    //************************************************************************
+    
+    //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX - CAMPOS CADASTRAMENTO
+    $('#cpfAutorBuscar').keypress(function (event){
+        let inputlenght = $('#cpfAutorBuscar').val().length;
+        
+        if((inputlenght === 3) || (inputlenght === 7)){
+            let ponto = $('#cpfAutorBuscar').val();
+            $('#cpfAutorBuscar').val(ponto + '.');
+        }
+        else if(inputlenght === 11){
+            let traco = $('#cpfAutorBuscar').val();
+            $('#cpfAutorBuscar').val(traco + '-');
+        }
+    });
+    
+    //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX
+    $('#cpfAdvAutorBuscar').keypress(function (event){
+        let inputlenght = $('#cpfAdvAutorBuscar').val().length;
+        
+        if((inputlenght === 3) || (inputlenght === 7)){
+            let ponto = $('#cpfAdvAutorBuscar').val();
+            $('#cpfAdvAutorBuscar').val(ponto + '.');
+        }
+        else if(inputlenght === 11){
+            let traco = $('#cpfAdvAutorBuscar').val();
+            $('#cpfAdvAutorBuscar').val(traco + '-');
+        }
+    });
+    
+     //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX
+    $('#cpfReuBuscar').keypress(function (event){
+        let inputlenght = $('#cpfReuBuscar').val().length;
+        
+        if((inputlenght === 3) || (inputlenght === 7)){
+            let ponto = $('#cpfReuBuscar').val();
+            $('#cpfReuBuscar').val(ponto + '.');
+        }
+        else if(inputlenght === 11){
+            let traco = $('#cpfReuBuscar').val();
+            $('#cpfReuBuscar').val(traco + '-');
+        }
+    });
+    
+    //MÁSCARA AUTOPREENCHIMENTO CPF NO FORMATO XXX.XXX.XXX-XX
+    $('#cpfAdvReuBuscar').keypress(function (event){
+        let inputlenght = $('#cpfAdvReuBuscar').val().length;
+        
+        if((inputlenght === 3) || (inputlenght === 7)){
+            let ponto = $('#cpfAdvReuBuscar').val();
+            $('#cpfAdvReuBuscar').val(ponto + '.');
+        }
+        else if(inputlenght === 11){
+            let traco = $('#cpfAdvReuBuscar').val();
+            $('#cpfAdvReuBuscar').val(traco + '-');
+        }
+    });
        
     
 });//FIM DO DOCUMENT READY FUNCTION

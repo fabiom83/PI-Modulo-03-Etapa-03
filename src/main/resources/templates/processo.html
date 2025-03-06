@@ -27,55 +27,65 @@
             
             <div class="row" id="divCadastroProcesso">
                 <h5>Cadastrar Processo</h5>
-                <div id="divCadastrarAutor"> <!-- SESSÃO AUTOR -->
+                <div id="divCadastrarAutor" class="bordaDiv"> <!-- SESSÃO AUTOR -->
                     <h6>Cadastrar Autor</h6>
                     <form id="formularioBuscarAutor">
                         <label for="cpfAutorBuscar" class="form-label">Informe o CPF do Autor:</label>
-                        <input type="text" maxlength="14" id="cpfAutorBuscar" name="cpfAutorBuscar" class="form-control"/>
+                        <input type="text" maxlength="14" id="cpfAutorBuscar" name="cpfAutorBuscar" class="form-control" placeholder="Digite Apenas Números"/>
+                        <br/>
                         <button type="submit" class="btn btn-primary">Buscar</button>
+                        <br/>
                     </form>
                     <br/>
-                    <p>Autor: <span id="spanNomeAutor"></span></p>
+                    <p>Autor: <span id="spanNomeAutor" class="marcaTextoAmarelo"></span></p>
                     <br/>
                     <div class="corFundoAzulClaro">
                     <form id="formularioBuscarAdvAutor">
                         <label for="cpfAdvAutorBuscar" class="form-label">Informe o CPF do Advogado:</label>
-                        <input type="text" maxlength="14" id="cpfAdvAutorBuscar" name="cpfAdvAutorBuscar" class="form-control"/>
+                        <input type="text" maxlength="14" id="cpfAdvAutorBuscar" name="cpfAdvAutorBuscar" class="form-control" placeholder="Digite Apenas Números"/>
+                        <br/>
                         <button type="submit" class="btn btn-primary">Buscar</button>
+                        <br/>
                     </form>
                     <br/>
-                    <p>Advogado: <span id="spanNomeAdvAutor"></span></p>
+                    <p>Advogado: <span id="spanNomeAdvAutor" class="marcaTextoAmarelo"></span></p>
                     <br/>
-                    <button type="button" id="botaoProsseguir1" class="btn btn-warning">Prosseguir</button>
+                    <button type="button" id="botaoProsseguir1" class="btn btn-secondary">Prosseguir</button>
                     <br/>
                     </div>
+                    <br/>
                 </div><!-- FIM DIV AUTOR --><br/>
-                
-                <div id="divCadastrarReu"><!-- SESSÃO RÉU -->
+                <br/>
+                <div id="divCadastrarReu" class="bordaDiv"><!-- SESSÃO RÉU -->
                     <h6>Cadastrar Réu</h6>
                     <form id="formularioBuscarReu">
                         <label for="cpfReuBuscar" class="form-label">Informe o CPF do Réu:</label>
-                        <input type="text" maxlength="14" id="cpfReuBuscar" name="cpfReuBuscar" class="form-control"/>
+                        <input type="text" maxlength="14" id="cpfReuBuscar" name="cpfReuBuscar" class="form-control" placeholder="Digite Apenas Números"/>
+                        <br/>
                         <button type="submit" class="btn btn-primary">Buscar</button>
+                        <br/>
                     </form>
                     <br/>
-                    <p>Réu: <span id="spanNomeReu"></span></p>
+                    <p>Réu: <span id="spanNomeReu" class="marcaTextoAmarelo"></span></p>
                     <br/>
                     <div class="corFundoAzulClaro">
                     <form id="formularioBuscarAdvReu">
                         <label for="cpfAdvReuBuscar" class="form-label">Informe o CPF do Advogado:</label>
-                        <input type="text" maxlength="14" id="cpfAdvReuBuscar" name="cpfAdvReuBuscar" class="form-control"/>
+                        <input type="text" maxlength="14" id="cpfAdvReuBuscar" name="cpfAdvReuBuscar" class="form-control" placeholder="Digite Apenas Números"/>
+                        <br/>
                         <button type="submit" class="btn btn-primary">Buscar</button>
+                        <br/>
                     </form>
                     <br/>
-                    <p>Advogado: <span id="spanNomeAdvReu"></span></p>
+                    <p>Advogado: <span id="spanNomeAdvReu" class="marcaTextoAmarelo"></span></p>
                     <br/>
-                    <button type="button" id="botaoProsseguir2" class="btn btn-warning">Prosseguir</button>
+                    <button type="button" id="botaoProsseguir2" class="btn btn-secondary">Prosseguir</button>
                     <br/>
                     </div>
+                    <br/>
                 </div><!-- FIM DIV RÉU --><br/>
-                
-                <div id="divCadastrarDadosProcesso"> <!-- SESSÃO PROCESSO -->
+                <br/>
+                <div id="divCadastrarDadosProcesso" class="bordaDiv"> <!-- SESSÃO PROCESSO -->
                     <h6>Dados do Processo</h6>
                     <form id="formularioProcesso">
                         <label for="nrProcesso" class="form-label">Nº do Processo:</label>
@@ -89,7 +99,7 @@
                         <br/>
                         <button type="submit" class="btn btn-success">Cadastrar</button>
                         <button type="button" id="botaoLimparCadastro" class="btn btn-danger">Limpar Formulários</button>
-                        
+                        <br/>
                     </form>
                     <br/>
                 </div><!-- FIM DIV DADOS PROCESSO -->               
